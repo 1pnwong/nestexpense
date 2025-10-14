@@ -1,5 +1,6 @@
 package com.panpan.nestexpense;
 
+import com.panpan.nestexpense.client.Client;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

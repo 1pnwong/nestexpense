@@ -1,19 +1,22 @@
-package com.panpan.nestexpense;
+package com.panpan.nestexpense.budget;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
-@Table(name = "client")
+@Table(name = "budget")
 
-public class Client {
+public class Budget {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
-    private Long userID;
+    private Long budgetID;
     @Column(unique = true) //Unique
-    private String email;
-    private String password;
+    private BigDecimal amountSpent;
+    private Long userID;
+    private String category;
 }

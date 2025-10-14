@@ -1,5 +1,7 @@
 package com.panpan.nestexpense;
 
+import com.panpan.nestexpense.client.Client;
+import com.panpan.nestexpense.client.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

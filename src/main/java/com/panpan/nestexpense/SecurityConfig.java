@@ -32,9 +32,15 @@ public class SecurityConfig {
                 .formLogin(formLogin -> formLogin
                         //Specify the custom login page URL
                         .loginPage("/login")
+                        //Tell the user is an email
+                        .usernameParameter("email")
                         //Redirect to home once success
                         .defaultSuccessUrl("/", true)
                         //Allow access to login page for all
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 );
         return http.build();
