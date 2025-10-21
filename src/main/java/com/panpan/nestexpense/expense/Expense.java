@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "expense")
+@Access(AccessType.FIELD)
 
 public class Expense {
     @Id //Primary Key
@@ -20,5 +21,7 @@ public class Expense {
     private BigDecimal amount;
     private Long userID;
     private String sentToWhere;
+    @Column(name = "dateExpense")
     private LocalDateTime dateExpense;
+    private String category;
 }
