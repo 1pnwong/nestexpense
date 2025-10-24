@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.List;
 public class ExpenseController {
     private final ClientRepository clientRepository;
     private final ExpenseRepository expenseRepository;
+    protected Long expenseID;
 
     public ExpenseController(ClientRepository clientRepository, ExpenseRepository expenseRepository) {
         this.clientRepository = clientRepository;
@@ -52,4 +55,31 @@ public class ExpenseController {
         expenseRepository.save(expense);
         return "redirect:/expense/add?success";
     }
+
+    @PostMapping("/expense/edit/prepare")
+    public String prepareEditExpense(@RequestParam("expenseID") Long expenseID, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("expenseID", expenseID);
+        return "redirect:/expense/edit";
+    }
+
+    @RequestMapping("/expense/edit")
+    public String showEditExpense(Model model){
+        expenseID = (Long)model.getAttribute("expenseID");
+        model.addAttribute("expense", new Expense());
+        return "expense/expense-edit.html";
+    }
+
+    @PostMapping("expense/edit")
+    public String doEditExpense(@ModelAttribute("expense") Expense expense,Model model){
+        int affectedRows = expenseRepository.updateByExpenseIDSql(expenseID, expense.getSentToWhere(), expense.getAmount(), expense.getDateExpense(), expense.getCategory());
+        return "redirect:/expense";
+    }
+
+    @PostMapping("/expense/delete")
+    public String doDeleteContent(@RequestParam("expenseID") Long expenseID, RedirectAttributes redirectAttributes){
+        expenseRepository.deleteByExpenseIDSql(expenseID);
+        return "redirect:/expense";
+    }
+
+
 }

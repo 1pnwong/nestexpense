@@ -19,6 +19,7 @@ import java.util.List;
 public class GoalController {
     private final ClientRepository clientRepository;
     private final GoalRepository goalRepository;
+    protected Long goalID;
 
     public GoalController(ClientRepository clientRepository, GoalRepository goalRepository) {
         this.clientRepository = clientRepository;

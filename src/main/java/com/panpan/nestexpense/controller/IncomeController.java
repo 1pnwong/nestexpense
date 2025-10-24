@@ -19,6 +19,7 @@ import java.util.List;
 public class IncomeController {
     private final ClientRepository clientRepository;
     private final IncomeRepository incomeRepository;
+    protected Long incomeID;
 
     public IncomeController(ClientRepository clientRepository, IncomeRepository incomeRepository) {
         this.clientRepository = clientRepository;

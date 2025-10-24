@@ -73,12 +73,18 @@
                 <td th:text="${expense.dateExpense}"><</td>
                 <td th:text="${expense.category}"><</td>
                 <td>
-                    <button class="btn btn-sm btn-warning me-1" title="Edit">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger" title="Delete">
-                        <i class="bi bi-trash"></i>
-                    </button>
+                    <form th:action="@{/expense/edit/prepare}" method="POST">
+                        <input type="hidden" name="expenseID" th:value="${expense.expenseID}" />
+                        <button type="submit" class="btn btn-sm btn-warning">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </form>
+                    <form th:action="@{/expense/delete}" method="POST">
+                        <input type="hidden" name="expenseID" th:value="${expense.expenseID}" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
             </tbody>

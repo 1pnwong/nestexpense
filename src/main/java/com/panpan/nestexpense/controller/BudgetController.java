@@ -19,6 +19,7 @@ import java.util.List;
 public class BudgetController {
     private final ClientRepository clientRepository;
     private final BudgetRepository budgetRepository;
+    protected Long budgetID;
 
     public BudgetController(ClientRepository clientRepository, BudgetRepository budgetRepository) {
         this.clientRepository = clientRepository;
