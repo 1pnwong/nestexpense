@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,8 +50,8 @@
 <!-- Main Content -->
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Expenses</h2>
-        <a th:href="@{/expense/add}" class="btn btn-primary">Add Expense</a>
+        <h2>Income</h2>
+        <a th:href="@{/income/add}" class="btn btn-primary">Add Income</a>
     </div>
 
     <!-- Table -->
@@ -59,19 +59,17 @@
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
             <tr>
-                <th>Sent to where</th>
-                <th>amount</th>
-                <th>date of Expense</th>
-                <th>category</th>
-                <th>Actions</th>
+                <th>Source of Income</th>
+                <th>Amount of Income</th>
+                <th>Date of Income</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="expense : ${expenses}">
-                <td th:text="${expense.sentToWhere}"><</td>
-                <td th:text="${expense.amount}"><</td>
-                <td th:text="${expense.dateExpense}"><</td>
-                <td th:text="${expense.category}"><</td>
+            <tr th:each="income : ${incomes}">
+                <td th:text="${income.source}"><</td>
+                <td th:text="${income.amount}"><</td>
+                <td th:text="${income.dateIncome}"><</td>
                 <td>
                     <button class="btn btn-sm btn-warning me-1" title="Edit">
                         <i class="bi bi-pencil"></i>

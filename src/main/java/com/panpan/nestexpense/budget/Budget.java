@@ -14,8 +14,8 @@ import java.math.BigDecimal;
 public class Budget {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
-    private Long budgetID;
     @Column(unique = true) //Unique
+    private Long budgetID;
     private BigDecimal amountSpent;
     private Long userID;
     private String category;

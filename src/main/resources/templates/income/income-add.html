@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Demo DB - Add Content</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">NestExpense</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Content</a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center">
+                <span class="text-white me-3">email</span>
+                <button class="btn btn-outline-light btn-sm">Logout</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4">
+    <h2 class="mb-4">Add Content</h2>
+
+    <!-- Form -->
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/income/add}" th:object="${income}" method="post">
+                <div class="mb-3">
+                    <label for="source" class="form-label">Source of Income</label>
+                    <input type="text" class="form-control" id="source" th:field="*{source}" placeholder="Enter source of income">
+                </div>
+
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="text" class="form-control" id="amount" th:field="*{amount}" placeholder="Enter amount">
+                </div>
+
+                <div class="mb-3">
+                    <label for="dateIncome" class="form-label">Date of income</label>
+                    <input type="datetime-local" class="form-control" id="dateIncome" th:field="*{dateIncome}" placeholder="Enter date of income">
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <a th:href="@{/income}" class="btn btn-secondary">Back</a>
+                </div>
+            </form>
+            <!-- Success Alert -->
+            <div th:if="${param.success}" class="alert alert-success alert-dismissible fade show" role="alert"  style="padding-top: 0.25rem;">
+                Record added successfully.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

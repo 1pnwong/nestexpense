@@ -33,13 +33,13 @@ public class ExpenseController {
             List<Expense> expenses = expenseRepository.findAllByUserIdSql(client.getUserID());
             model.addAttribute("expenses", expenses);
         }
-        return "expense.html";
+        return "expense/expense.html";
     }
 
     @RequestMapping("/expense/add")
-    public String expenseAdd(Model model, Principal principal){
+    public String budgetAdd(Model model, Principal principal){
         model.addAttribute("expense", new Expense());
-        return "expense-add.html";
+        return "expense/expense-add.html";
     }
 
     @PostMapping("/expense/add")
