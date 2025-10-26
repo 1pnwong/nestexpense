@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -54,5 +56,30 @@ public class IncomeController {
         }
         incomeRepository.save(income);
         return "redirect:/income/add?success";
+    }
+
+    @PostMapping("/income/edit/prepare")
+    public String prepareEditIncome(@RequestParam("incomeID") Long incomeID, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("incomeID", incomeID);
+        return "redirect:/income/edit";
+    }
+
+    @RequestMapping("/income/edit")
+    public String showEditIncome(Model model){
+        incomeID = (Long)model.getAttribute("incomeID");
+        model.addAttribute("income", new Income());
+        return "income/income-edit.html";
+    }
+
+    @PostMapping("income/edit")
+    public String doEditIncome(@ModelAttribute("income") Income income,Model model){
+        int affectedRows = incomeRepository.updateByIncomeIDSql(incomeID, income.getSource(), income.getAmount(), income.getDateIncome());
+        return "redirect:/income";
+    }
+
+    @PostMapping("/income/delete")
+    public String doDeleteContent(@RequestParam("incomeID") Long incomeID, RedirectAttributes redirectAttributes){
+        incomeRepository.deleteByIncomeIDSql(incomeID);
+        return "redirect:/income";
     }
 }

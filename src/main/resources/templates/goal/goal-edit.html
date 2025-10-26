@@ -31,24 +31,35 @@
 
 <!-- Main Content -->
 <div class="container mt-4">
-    <h2 class="mb-4">Add Budget</h2>
+    <h2 class="mb-4">Edit Goal</h2>
 
     <!-- Form -->
     <div class="card">
         <div class="card-body">
-            <form th:action="@{/budget/add}" th:object="${budget}" method="post">
+            <form th:action="@{/goal/edit}" th:object="${goal}" method="post">
                 <div class="mb-3">
-                    <label for="amountSpent" class="form-label">Amount spent</label>
-                    <input type="number" class="form-control" id="amountSpent" th:field="*{amountSpent}" placeholder="Enter amount spent">
+                    <label for="goal" class="form-label">Goal</label>
+                    <input type="number" class="form-control" id="goal" th:field="*{goal}" placeholder="Enter goal">
                 </div>
 
                 <div class="mb-3">
-                    <label for="category" class="form-label">Category</label>
-                    <input type="text" class="form-control" id="category" th:field="*{category}" placeholder="Enter category">
+                    <label for="currentBalance" class="form-label">Current Balance</label>
+                    <input type="number" class="form-control" id="currentBalance" th:field="*{currentBalance}" placeholder="Enter Current Balance">
                 </div>
+
+                <div class="mb-3">
+                    <label for="amountReachGoal" class="form-label">Amount to reach Goal</label>
+                    <input type="number-local" class="form-control" id="amountReachGoal" th:field="*{amountReachGoal}" placeholder="Enter the amount left to reach goal">
+                </div>
+
+                <div class="mb-3">
+                    <label for="purpose" class="form-label">Purpose</label>
+                    <input type="text" class="form-control" id="purpose" th:field="*{purpose}" placeholder="Enter the purpose of the goal">
+                </div>
+
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary">Add</button>
-                    <a th:href="@{/budget}" class="btn btn-secondary">Back</a>
+                    <a th:href="@{/goal}" class="btn btn-secondary">Back</a>
                 </div>
             </form>
             <!-- Success Alert -->

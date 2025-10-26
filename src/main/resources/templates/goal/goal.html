@@ -50,7 +50,7 @@
 <!-- Main Content -->
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Goals</h2>
+        <h2>Goal</h2>
         <a th:href="@{/goal/add}" class="btn btn-primary">Add Goal</a>
     </div>
 
@@ -73,11 +73,18 @@
                 <td th:text="${goal.amountReachGoal}"><</td>
                 <td th:text="${goal.purpose}"><</td>
                 <td>
-                    <button class="btn btn-sm btn-warning me-1" title="Edit">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-danger" title="Delete">
-                        <i class="bi bi-trash"></i>
+                    <form th:action="@{/goal/edit/prepare}" method="POST">
+                        <input type="hidden" name="goalID" th:value="${goal.goalID}" />
+                        <button type="submit" class="btn btn-sm btn-warning">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </form>
+                    <form th:action="@{/goal/delete}" method="POST">
+                        <input type="hidden" name="goalID" th:value="${goal.goalID}" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
                     </button>
                 </td>
             </tr>

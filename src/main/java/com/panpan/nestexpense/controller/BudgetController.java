@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -54,5 +56,30 @@ public class BudgetController {
         }
         budgetRepository.save(budget);
         return "redirect:/budget/add?success";
+    }
+
+    @PostMapping("/budget/edit/prepare")
+    public String prepareEditBudget(@RequestParam("budgetID") Long budgetID, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("budgetID", budgetID);
+        return "redirect:/budget/edit";
+    }
+
+    @RequestMapping("/budget/edit")
+    public String showEditBudget(Model model){
+        budgetID = (Long)model.getAttribute("budgetID");
+        model.addAttribute("budget", new Budget());
+        return "budget/budget-edit.html";
+    }
+
+    @PostMapping("budget/edit")
+    public String doEditBudget(@ModelAttribute("budget") Budget budget,Model model){
+        int affectedRows = budgetRepository.updateByBudgetIDSql(budgetID, budget.getAmountSpent(), budget.getCategory());
+        return "redirect:/budget";
+    }
+
+    @PostMapping("/budget/delete")
+    public String doDeleteContent(@RequestParam("budgetID") Long budgetID, RedirectAttributes redirectAttributes){
+        budgetRepository.deleteByBudgetIDSql(budgetID);
+        return "redirect:/budget";
     }
 }
