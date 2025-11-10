@@ -43,6 +43,8 @@ public class IncomeController {
 
     @RequestMapping("/income/add")
     public String incomeAdd(Model model, Principal principal){
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         model.addAttribute("income", new Income());
         return "income/income-add.html";
     }
@@ -65,7 +67,9 @@ public class IncomeController {
     }
 
     @RequestMapping("/income/edit")
-    public String showEditIncome(Model model){
+    public String showEditIncome(Model model, Principal principal){
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         incomeID = (Long)model.getAttribute("incomeID");
         model.addAttribute("income", new Income());
         return "income/income-edit.html";
@@ -74,7 +78,7 @@ public class IncomeController {
     @PostMapping("income/edit")
     public String doEditIncome(@ModelAttribute("income") Income income,Model model){
         int affectedRows = incomeRepository.updateByIncomeIDSql(incomeID, income.getSource(), income.getAmount(), income.getDateIncome());
-        return "redirect:/income";
+        return "redirect:/income/edit?success";
     }
 
     @PostMapping("/income/delete")

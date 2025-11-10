@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Demo DB - Add Content</title>
+    <title>NestExpense - Edit Income</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
@@ -18,11 +18,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Content</a>
+                    <a class="nav-link active" href="#">Income</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center">
-                <span class="text-white me-3">email</span>
+                <span class="text-white me-3" th:text="${email}"></span>
                 <button class="btn btn-outline-light btn-sm">Logout</button>
             </div>
         </div>
@@ -58,7 +58,7 @@
             </form>
             <!-- Success Alert -->
             <div th:if="${param.success}" class="alert alert-success alert-dismissible fade show" role="alert"  style="padding-top: 0.25rem;">
-                Record added successfully.
+                Record edited successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>

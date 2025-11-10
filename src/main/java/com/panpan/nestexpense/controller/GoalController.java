@@ -43,6 +43,8 @@ public class GoalController {
 
     @RequestMapping("/goal/add")
     public String goalAdd(Model model, Principal principal) {
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         model.addAttribute("goal", new Goal());
         return "goal/goal-add.html";
     }
@@ -65,7 +67,9 @@ public class GoalController {
     }
 
     @RequestMapping("/goal/edit")
-    public String showEditGoal(Model model) {
+    public String showEditGoal(Model model, Principal principal) {
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         goalID = (Long) model.getAttribute("goalID");
         model.addAttribute("goal", new Goal());
         return "goal/goal-edit.html";
@@ -74,7 +78,7 @@ public class GoalController {
     @PostMapping("goal/edit")
     public String doEditGoal(@ModelAttribute("goal") Goal goal, Model model) {
         int affectedRows = goalRepository.updateByGoalIDSql(goalID, goal.getGoal(), goal.getCurrentBalance(), goal.getAmountReachGoal(), goal.getPurpose());
-        return "redirect:/goal";
+        return "redirect:/goal/edit?success";
     }
 
     @PostMapping("/goal/delete")

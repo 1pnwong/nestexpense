@@ -43,6 +43,8 @@ public class BudgetController {
 
     @RequestMapping("/budget/add")
     public String budgetAdd(Model model, Principal principal){
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         model.addAttribute("budget", new Budget());
         return "budget/budget-add.html";
     }
@@ -65,7 +67,9 @@ public class BudgetController {
     }
 
     @RequestMapping("/budget/edit")
-    public String showEditBudget(Model model){
+    public String showEditBudget(Model model, Principal principal){
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         budgetID = (Long)model.getAttribute("budgetID");
         model.addAttribute("budget", new Budget());
         return "budget/budget-edit.html";
@@ -73,8 +77,8 @@ public class BudgetController {
 
     @PostMapping("budget/edit")
     public String doEditBudget(@ModelAttribute("budget") Budget budget,Model model){
-        int affectedRows = budgetRepository.updateByBudgetIDSql(budgetID, budget.getAmountSpent(), budget.getCategory());
-        return "redirect:/budget";
+        int affectedRows = budgetRepository.updateByBudgetIDSql(budgetID, budget.getAmountSpent(), budget.getCategory(), budget.getBudget(), budget.getAmountToBudget());
+        return "redirect:/budget/edit?success";
     }
 
     @PostMapping("/budget/delete")

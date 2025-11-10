@@ -41,6 +41,8 @@ public class ExpenseController {
 
     @RequestMapping("/expense/add")
     public String budgetAdd(Model model, Principal principal){
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         model.addAttribute("expense", new Expense());
         return "expense/expense-add.html";
     }
@@ -63,7 +65,9 @@ public class ExpenseController {
     }
 
     @RequestMapping("/expense/edit")
-    public String showEditExpense(Model model){
+    public String showEditExpense(Model model, Principal principal){
+        // Get UserID
+        model.addAttribute("email", principal.getName());
         expenseID = (Long)model.getAttribute("expenseID");
         model.addAttribute("expense", new Expense());
         return "expense/expense-edit.html";
@@ -72,7 +76,7 @@ public class ExpenseController {
     @PostMapping("expense/edit")
     public String doEditExpense(@ModelAttribute("expense") Expense expense,Model model){
         int affectedRows = expenseRepository.updateByExpenseIDSql(expenseID, expense.getSentToWhere(), expense.getAmount(), expense.getDateExpense(), expense.getCategory());
-        return "redirect:/expense";
+        return "redirect:/expense/edit?success";
     }
 
     @PostMapping("/expense/delete")

@@ -19,4 +19,6 @@ public class Budget {
     private BigDecimal amountSpent;
     private Long userID;
     private String category;
+    private BigDecimal budget;
+    private BigDecimal amountToBudget;
 }

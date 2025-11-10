@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Demo DB - Add Content</title>
+    <title>NestExpense - Add Budget</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
@@ -18,11 +18,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Content</a>
+                    <a class="nav-link active" href="#">Budget</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center">
-                <span class="text-white me-3">email</span>
+                <span class="text-white me-3" th:text="${email}"></span>
                 <button class="btn btn-outline-light btn-sm">Logout</button>
             </div>
         </div>
@@ -38,10 +38,17 @@
         <div class="card-body">
             <form th:action="@{/budget/edit}" th:object="${budget}" method="post">
                 <div class="mb-3">
+                    <label for="budget" class="form-label">Budget</label>
+                    <input type="number" class="form-control" id="budget" th:field="*{budget}" placeholder="Enter your budget">
+                </div>
+                <div class="mb-3">
                     <label for="amountSpent" class="form-label">Amount spent</label>
                     <input type="number" class="form-control" id="amountSpent" th:field="*{amountSpent}" placeholder="Enter amount spent">
                 </div>
-
+                <div class="mb-3">
+                    <label for="amountToBudget" class="form-label">Amount Left to Budget</label>
+                    <input type="number" class="form-control" id="amountToBudget" th:field="*{amountToBudget}" placeholder="Enter amount left to budget">
+                </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
                     <input type="text" class="form-control" id="category" th:field="*{category}" placeholder="Enter category">
@@ -53,7 +60,7 @@
             </form>
             <!-- Success Alert -->
             <div th:if="${param.success}" class="alert alert-success alert-dismissible fade show" role="alert"  style="padding-top: 0.25rem;">
-                Record added successfully.
+                Budget edited successfully.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
