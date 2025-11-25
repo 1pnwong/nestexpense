@@ -21,11 +21,13 @@ public class ExpenseController {
     private final ExpenseRepository expenseRepository;
     protected Long expenseID;
 
+    //constructor
     public ExpenseController(ClientRepository clientRepository, ExpenseRepository expenseRepository) {
         this.clientRepository = clientRepository;
         this.expenseRepository = expenseRepository;
     }
 
+    //get method when go to /expense
     @RequestMapping("/expense")
     public String expense(Model model, Principal principal){
         if(principal != null){
@@ -47,6 +49,7 @@ public class ExpenseController {
         return "expense/expense-add.html";
     }
 
+    //post method after completing the form and submitting
     @PostMapping("/expense/add")
     public String doAddExpense(@ModelAttribute("expense") Expense expense, Principal principal){
         // Get and save user ID
@@ -58,6 +61,7 @@ public class ExpenseController {
         return "redirect:/expense/add?success";
     }
 
+    //add budget as flash attribute so it that it is hidden. this is to ensure security
     @PostMapping("/expense/edit/prepare")
     public String prepareEditExpense(@RequestParam("expenseID") Long expenseID, RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("expenseID", expenseID);

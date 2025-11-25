@@ -23,11 +23,13 @@ public class GoalController {
     private final GoalRepository goalRepository;
     protected Long goalID;
 
+    //constructor
     public GoalController(ClientRepository clientRepository, GoalRepository goalRepository) {
         this.clientRepository = clientRepository;
         this.goalRepository = goalRepository;
     }
 
+    //get method when go to /goal
     @RequestMapping("/goal")
     public String content(Model model, Principal principal) {
         if (principal != null) {
@@ -49,6 +51,7 @@ public class GoalController {
         return "goal/goal-add.html";
     }
 
+    //post method after completing the form and submitting
     @PostMapping("/goal/add")
     public String doAddGoal(@ModelAttribute("goal") Goal goal, Principal principal) {
         // Get and save user ID
@@ -60,6 +63,7 @@ public class GoalController {
         return "redirect:/goal/add?success";
     }
 
+    //add budget as flash attribute so it that it is hidden. this is to ensure security
     @PostMapping("/goal/edit/prepare")
     public String prepareEditGoal(@RequestParam("goalID") Long goalID, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("goalID", goalID);

@@ -20,12 +20,14 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private ClientRepository clientRepository;
 
+    //Logging in
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Client client = clientRepository.findByEmail(username);
         if (client == null) {
             throw new UsernameNotFoundException(username);
         }
+        //check if the user's account is valid if yes then grant access
         boolean enabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;

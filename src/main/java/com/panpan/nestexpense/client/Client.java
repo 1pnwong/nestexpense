@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 @Table(name = "client")
 
+
+//object for client record in database
 public class Client {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment

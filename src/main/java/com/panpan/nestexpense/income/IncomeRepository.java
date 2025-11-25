@@ -12,16 +12,21 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
+//this is an interface class for query data for database
 @Repository
 public interface IncomeRepository extends JpaRepository<Income, Long> {
+    //select all data from userID
     @Query(value = "SELECT * FROM income WHERE userID = :id", nativeQuery = true)
     List<Income> findAllByUserIdSql(@Param("id") Long userId);
 
+    //update current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "UPDATE income SET source = :source, amount = :amount, dateIncome = :dateIncome WHERE incomeID = :incomeID", nativeQuery = true)
     int updateByIncomeIDSql(@Param("incomeID") Long incomeID, @Param("source") String source, @Param("amount") BigDecimal remark, @Param("dateIncome") LocalDateTime dateIncome);
 
+    //delete current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM income WHERE income.incomeID = :incomeID", nativeQuery = true)

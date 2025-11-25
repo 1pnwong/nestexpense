@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "expense")
 @Access(AccessType.FIELD)
 
+//object for expense record in database
 public class Expense {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment

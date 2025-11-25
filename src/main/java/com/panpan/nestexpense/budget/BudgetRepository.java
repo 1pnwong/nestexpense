@@ -14,16 +14,21 @@ import java.util.List;
 
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
+    //select all data from userID
     @Query(value = "SELECT * FROM budget WHERE userID = :id", nativeQuery = true)
     List<Budget> findAllByUserIdSql(@Param("id") Long userId);
 
+    //update current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "UPDATE budget SET amountSpent = :amountSpent, category = :category, budget = :budget, amountToBudget = :amountToBudget WHERE budgetID = :budgetID", nativeQuery = true)
     int updateByBudgetIDSql(@Param("budgetID") Long budgetID, @Param("amountSpent") BigDecimal amountSpent, @Param("category") String category, @Param("budget") BigDecimal budget, @Param("amountToBudget") BigDecimal amountToBudget);
 
+    //delete current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM budget WHERE budget.budgetID = :budgetID", nativeQuery = true)
     int deleteByBudgetIDSql(@Param("budgetID") Long id);
 }
+
+

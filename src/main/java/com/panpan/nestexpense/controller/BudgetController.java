@@ -23,11 +23,13 @@ public class BudgetController {
     private final BudgetRepository budgetRepository;
     protected Long budgetID;
 
+    //constructor
     public BudgetController(ClientRepository clientRepository, BudgetRepository budgetRepository) {
         this.clientRepository = clientRepository;
         this.budgetRepository = budgetRepository;
     }
 
+    //get method when go to /budget
     @RequestMapping("/budget")
     public String content(Model model, Principal principal){
         if(principal != null){
@@ -45,10 +47,11 @@ public class BudgetController {
     public String budgetAdd(Model model, Principal principal){
         // Get UserID
         model.addAttribute("email", principal.getName());
-        model.addAttribute("budget", new Budget());
+        model.addAttribute("budget", new Budget()); //adding new attribute called 'budget' object
         return "budget/budget-add.html";
     }
 
+    //post method after completing the form and submitting
     @PostMapping("/budget/add")
     public String doAddBudget(@ModelAttribute("budget") Budget budget, Principal principal){
         // Get and save user ID
@@ -60,6 +63,7 @@ public class BudgetController {
         return "redirect:/budget/add?success";
     }
 
+    //add budget as flash attribute so it that it is hidden. this is to ensure security
     @PostMapping("/budget/edit/prepare")
     public String prepareEditBudget(@RequestParam("budgetID") Long budgetID, RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("budgetID", budgetID);

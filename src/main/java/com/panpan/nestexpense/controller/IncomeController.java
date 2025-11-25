@@ -23,11 +23,13 @@ public class IncomeController {
     private final IncomeRepository incomeRepository;
     protected Long incomeID;
 
+    //constructor
     public IncomeController(ClientRepository clientRepository, IncomeRepository incomeRepository) {
         this.clientRepository = clientRepository;
         this.incomeRepository = incomeRepository;
     }
 
+    //get method when go to /income
     @RequestMapping("/income")
     public String content(Model model, Principal principal){
         if(principal != null){
@@ -49,6 +51,7 @@ public class IncomeController {
         return "income/income-add.html";
     }
 
+    //post method after completing the form and submitting
     @PostMapping("/income/add")
     public String doAddIncome(@ModelAttribute("income") Income income, Principal principal){
         // Get and save user ID
@@ -60,6 +63,7 @@ public class IncomeController {
         return "redirect:/income/add?success";
     }
 
+    //add budget as flash attribute so it that it is hidden. this is to ensure security
     @PostMapping("/income/edit/prepare")
     public String prepareEditIncome(@RequestParam("incomeID") Long incomeID, RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("incomeID", incomeID);

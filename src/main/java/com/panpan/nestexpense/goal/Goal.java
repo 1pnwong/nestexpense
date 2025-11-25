@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @Table(name = "goal")
 
+//object for goal record in database
 public class Goal {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment

@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @Table(name = "budget")
 
+//object for budget record in database
 public class Budget {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Table(name = "income")
 
+//object for income record in database
 public class Income {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment

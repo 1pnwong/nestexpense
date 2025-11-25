@@ -15,14 +15,17 @@ import java.util.List;
 
 @Repository
 public interface GoalRepository extends JpaRepository<Goal, Long> {
+    //select all data from userID
     @Query(value = "SELECT * FROM goal WHERE userID = :id", nativeQuery = true)
     List<Goal> findAllByUserIdSql(@Param("id") Long userId);
 
+    //update current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "UPDATE goal SET goal = :goal, currentBalance = :currentBalance, amountReachGoal = :amountReachGoal, purpose = :purpose WHERE goalID = :goalID", nativeQuery = true)
     int updateByGoalIDSql(@Param("goalID") Long expenseID, @Param("goal") BigDecimal goal, @Param("currentBalance") BigDecimal currentBalance, @Param("amountReachGoal") BigDecimal amountReachGoal, @Param("purpose") String purpose);
 
+    //delete current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM goal WHERE goal.goalID = :goalID", nativeQuery = true)

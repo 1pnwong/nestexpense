@@ -13,14 +13,17 @@ import java.util.List;
 
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
+    //select all data from userID
     @Query(value = "SELECT * FROM expense WHERE userID = :id", nativeQuery = true)
     List<Expense> findAllByUserIdSql(@Param("id") Long userId);
 
+    //update current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "UPDATE expense SET sentToWhere = :sentToWhere, amount = :amount, dateExpense = :dateExpense, category = :category WHERE expenseID = :expenseID", nativeQuery = true)
     int updateByExpenseIDSql(@Param("expenseID") Long expenseID, @Param("sentToWhere") String sentToWhere, @Param("amount") BigDecimal remark, @Param("dateExpense") LocalDateTime dateExpense, @Param("category") String category);
 
+    //delete current record by expense ID
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM expense WHERE expense.expenseID = :expenseID", nativeQuery = true)
