@@ -72,7 +72,7 @@ public class IncomeController {
 
     @RequestMapping("/income/edit")
     public String showEditIncome(Model model, Principal principal){
-        // Get UserID
+        // get UserID
         model.addAttribute("email", principal.getName());
         incomeID = (Long)model.getAttribute("incomeID");
         model.addAttribute("income", new Income());

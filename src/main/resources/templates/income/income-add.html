@@ -20,7 +20,9 @@
             </ul>
             <div class="d-flex align-items-center">
                 <span class="text-white me-3" th:text="${email}"></span>
-                <button class="btn btn-outline-light btn-sm">Logout</button>
+                <form th:action="@{/logout}" method="post">
+                    <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+                </form>
             </div>
         </div>
     </div>

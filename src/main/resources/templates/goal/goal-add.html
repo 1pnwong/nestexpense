@@ -23,7 +23,9 @@
             </ul>
             <div class="d-flex align-items-center">
                 <span class="text-white me-3" th:text="${email}"></span>
-                <button class="btn btn-outline-light btn-sm">Logout</button>
+                <form th:action="@{/logout}" method="post">
+                    <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
+                </form>
             </div>
         </div>
     </div>
@@ -49,7 +51,7 @@
 
                 <div class="mb-3">
                     <label for="amountReachGoal" class="form-label">Amount to reach Goal</label>
-                    <input type="number-local" class="form-control" id="amountReachGoal" th:field="*{amountReachGoal}" placeholder="Enter the amount left to reach goal">
+                    <input type="number" class="form-control" id="amountReachGoal" th:field="*{amountReachGoal}" placeholder="Enter the amount left to reach goal">
                 </div>
 
                 <div class="mb-3">
