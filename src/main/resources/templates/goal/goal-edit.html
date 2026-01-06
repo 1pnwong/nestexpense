@@ -39,12 +39,12 @@
             <form th:action="@{/goal/edit}" th:object="${goal}" method="post">
                 <div class="mb-3">
                     <label for="goal" class="form-label">Goal</label>
-                    <input type="number" class="form-control" id="goal" th:field="*{goal}" placeholder="Enter goal">
+                    <input type="number" min="0" class="form-control" id="goal" th:field="*{goal}" placeholder="Enter goal">
                 </div>
 
                 <div class="mb-3">
                     <label for="currentBalance" class="form-label">Current Balance</label>
-                    <input type="number" class="form-control" id="currentBalance" th:field="*{currentBalance}" placeholder="Enter Current Balance">
+                    <input type="number" min="0" class="form-control" id="currentBalance" th:field="*{currentBalance}" placeholder="Enter Current Balance">
                 </div>
 
                 <div class="mb-3">

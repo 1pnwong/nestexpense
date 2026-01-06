@@ -39,15 +39,15 @@
             <form th:action="@{/budget/edit}" th:object="${budget}" method="post">
                 <div class="mb-3">
                     <label for="budget" class="form-label">Budget</label>
-                    <input type="number" class="form-control" id="budget" th:field="*{budget}" placeholder="Enter your budget">
+                    <input type="number" min="0" class="form-control" id="budget" th:field="*{budget}" placeholder="Enter your budget">
                 </div>
                 <div class="mb-3">
                     <label for="amountSpent" class="form-label">Amount spent</label>
-                    <input type="number" class="form-control" id="amountSpent" th:field="*{amountSpent}" placeholder="Enter amount spent">
+                    <input type="number" min="0" class="form-control" id="amountSpent" th:field="*{amountSpent}" placeholder="Enter amount spent">
                 </div>
                 <div class="mb-3">
                     <label for="amountToBudget" class="form-label">Amount Left to Budget</label>
-                    <input type="number" class="form-control" id="amountToBudget" th:field="*{amountToBudget}" placeholder="Enter amount left to budget">
+                    <input type="number" min="0" class="form-control" id="amountToBudget" th:field="*{amountToBudget}" placeholder="Enter amount left to budget">
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label">Category</label>
