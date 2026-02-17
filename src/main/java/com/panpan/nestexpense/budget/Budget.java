@@ -16,16 +16,10 @@ public class Budget {
     @Id //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment
     @Column(unique = true) //Unique
-    @Column(name = "budgetID")
     private Long budgetID;
-    @Column(name = "amountSpent")
     private BigDecimal amountSpent;
-    @Column(name = "userID")
     private Long userID;
-    @Column(name = "category")
     private String category;
-    @Column(name = "budget")
     private BigDecimal budget;
-    @Column(name = "amountToBudget")
     private BigDecimal amountToBudget;
 }
