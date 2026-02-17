@@ -79,7 +79,7 @@ public class BudgetController {
         return "budget/budget-edit.html";
     }
 
-    @PostMapping("budget/edit")
+    @PostMapping("/budget/edit")
     public String doEditBudget(@ModelAttribute("budget") Budget budget,Model model){
         int affectedRows = budgetRepository.updateByBudgetIDSql(budgetID, budget.getAmountSpent(), budget.getCategory(), budget.getBudget(), budget.getAmountToBudget());
         return "redirect:/budget/edit?success";
