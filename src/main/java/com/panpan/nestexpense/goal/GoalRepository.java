@@ -22,7 +22,7 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
     //update current record by expense ID
     @Modifying
     @Transactional
-    @Query(value = "UPDATE goal SET goal = :goal, currentBalance = :currentBalance, amountReachGoal = :amountReachGoal, purpose = :purpose WHERE goalID = :goalID", nativeQuery = true)
+    @Query(value = "UPDATE goal SET goal = :goal, current_balance = :currentBalance, amount_reach_goal = :amountReachGoal, purpose = :purpose WHERE goalID = :goalID", nativeQuery = true)
     int updateByGoalIDSql(@Param("goalID") Long expenseID, @Param("goal") BigDecimal goal, @Param("currentBalance") BigDecimal currentBalance, @Param("amountReachGoal") BigDecimal amountReachGoal, @Param("purpose") String purpose);
 
     //delete current record by expense ID
