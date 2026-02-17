@@ -23,7 +23,7 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
     //update current record by expense ID
     @Modifying
     @Transactional
-    @Query(value = "UPDATE income SET source = :source, amount = :amount, dateIncome = :dateIncome WHERE incomeID = :incomeID", nativeQuery = true)
+    @Query(value = "UPDATE income SET source = :source, amount = :amount, date_income = :dateIncome WHERE incomeID = :incomeID", nativeQuery = true)
     int updateByIncomeIDSql(@Param("incomeID") Long incomeID, @Param("source") String source, @Param("amount") BigDecimal remark, @Param("dateIncome") LocalDateTime dateIncome);
 
     //delete current record by expense ID
