@@ -20,7 +20,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     //update current record by expense ID
     @Modifying
     @Transactional
-    @Query(value = "UPDATE expense SET sent_to_Where = :sentToWhere, amount = :amount, date_expense = :dateExpense, category = :category WHERE expenseID = :expenseID", nativeQuery = true)
+    @Query(value = "UPDATE expense SET sent_to_where = :sentToWhere, amount = :amount, date_expense = :dateExpense, category = :category WHERE expenseID = :expenseID", nativeQuery = true)
     int updateByExpenseIDSql(@Param("expenseID") Long expenseID, @Param("sentToWhere") String sentToWhere, @Param("amount") BigDecimal remark, @Param("dateExpense") LocalDateTime dateExpense, @Param("category") String category);
 
     //delete current record by expense ID
