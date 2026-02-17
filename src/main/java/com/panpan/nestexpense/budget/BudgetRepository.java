@@ -21,7 +21,7 @@ public interface BudgetRepository extends JpaRepository<Budget, Long> {
     //update current record by expense ID
     @Modifying
     @Transactional
-    @Query(value = "UPDATE budget SET amountSpent = :amountSpent, category = :category, budget = :budget, amountToBudget = :amountToBudget WHERE budgetID = :budgetID", nativeQuery = true)
+    @Query(value = "UPDATE budget SET amount_spent = :amountSpent, category = :category, budget = :budget, amount_to_Budget = :amountToBudget WHERE budget_id = :budgetID", nativeQuery = true)
     int updateByBudgetIDSql(@Param("budgetID") Long budgetID, @Param("amountSpent") BigDecimal amountSpent, @Param("category") String category, @Param("budget") BigDecimal budget, @Param("amountToBudget") BigDecimal amountToBudget);
 
     //delete current record by expense ID
